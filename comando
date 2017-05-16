@@ -1,0 +1,1 @@
+hadoop jar Temperatura.jar hadoop/trabalho/dados/curitiba-2016.csv hadoop/trabalho/resultado
