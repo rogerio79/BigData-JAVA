@@ -4,10 +4,10 @@ import org.apache.hadoop.mapreduce.*;
 
 import java.io.IOException;
 
-public class ReduceTemperaturaMedia extends Reducer <Text, IntWritable,IntWritable, IntWritable > {
-	public void reduce(IntWritable key,  Iterable<IntWritable> values, Context context) throws IOException,                                                       InterruptedException
+public class ReduceTemperaturaMedia extends Reducer <IntWritable, FloatWritable,IntWritable, IntWritable > {
+	public void reduce(IntWritable key,  Iterable<FloatWritable> values, Context context) throws IOException,                                                       InterruptedException
             {          
-			int temperaturas = 0; 
+	    int temperaturas = 0; 
             int cont = 0;
             
             for (IntWritable value : values) {
