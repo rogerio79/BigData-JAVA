@@ -1,20 +1,28 @@
+import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.*;
 
 import java.io.IOException;
 
-public class ReduceTemperaturaMedia extends Reducer <IntWritable, FloatWritable,IntWritable, IntWritable > {
+public class ReduceTemperaturaMedia extends Reducer <IntWritable, FloatWritable,IntWritable, FloatWritable > {
 	public void reduce(IntWritable key,  Iterable<FloatWritable> values, Context context) throws IOException,                                                       InterruptedException
             {          
-	    int temperaturas = 0; 
-            int cont = 0;
+			Float temperaturas = new Float(0);
+			
+			int contador = 0;
             
-            for (IntWritable value : values) {
-            	temperaturas += value.get();     
-                	cont+=1;
+            
+            for (FloatWritable value : values) {
+            	temperaturas += value.get();
+            	contador += 1;            	
             }
-            context.write(key, new IntWritable(temperaturas/cont));
+            try {
+            	temperaturas = temperaturas / contador;
+            } finally {
+            	contador = 1;
+            }
+            
+            context.write(key, new FloatWritable(temperaturas));
            
     }                                             
 }
