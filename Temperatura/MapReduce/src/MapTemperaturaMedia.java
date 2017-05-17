@@ -21,10 +21,10 @@ public class MapTemperaturaMedia extends Mapper <LongWritable, Text, IntWritable
                         int mes = Integer.parseInt(aux_ano[1].toString()); 
                         
                                                 
-                        if (linha[3].length() > 0 && linha[3] != null)
-                                    temperatura = Float.parseFloat(linha[3]);
+                        if (linha[4].length() > 0 && linha[4] != null)
+                                    temperatura = Float.parseFloat(linha[4]);
                         else
-                        			temperatura = Float.parseFloat(linha[4]);      
+                        			temperatura = Float.parseFloat(linha[5]);      
                        
                           
                        	context.write(new IntWritable(mes),new FloatWritable(temperatura));
